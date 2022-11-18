@@ -20,10 +20,7 @@ type ReservoirClient struct {
 
 // NewReservoirClient creates a new Reservoir client with configuration.
 func NewReservoirClient(apiKey string) *ReservoirClient {
-	logger, err := zap.NewProduction()
-	if err != nil {
-		panic(err)
-	}
+	logger, _ := zap.NewProduction()
 
 	return &ReservoirClient{
 		Log: logger.Sugar(),
