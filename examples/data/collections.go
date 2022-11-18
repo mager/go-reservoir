@@ -1,4 +1,4 @@
-package examples
+package main
 
 import (
 	"github.com/mager/go-reservoir/reservoir"
@@ -15,5 +15,8 @@ func main() {
 		// TODO: Handle error
 	}
 
-	client.Log.Info(c.Name)
+	// Loop through collections and print the name
+	for _, collection := range c.Collections {
+		client.Log.Info(collection)
+	}
 }

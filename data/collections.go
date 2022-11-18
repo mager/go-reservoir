@@ -60,8 +60,8 @@ type VolumeChange struct {
 	Three0Day float64 `json:"30day"`
 }
 type FloorSale struct {
-	OneDay    int     `json:"1day"`
-	SevenDay  int     `json:"7day"`
+	OneDay    float64 `json:"1day"`
+	SevenDay  float64 `json:"7day"`
 	Three0Day float64 `json:"30day"`
 }
 type FloorSaleChange struct {
@@ -100,19 +100,3 @@ type Collections struct {
 	CollectionBidSupported    bool            `json:"collectionBidSupported"`
 	Royalties                 Royalties       `json:"royalties,omitempty"`
 }
-
-// // GetCollections gets a list of collections by slug
-// // https://docs.reservoir.tools/reference/getcollectionsv5
-// func (c *reservoir.ReservoirClient) GetCollections(slug string) (CollectionsResp, error) {
-// 	var resp CollectionsResp
-// 	var err error
-
-// 	// Build the URL
-// 	u := fmt.Sprintf("%s/collections/v5/?slug=%s", c.BaseURL, slug)
-
-// 	// Make the request
-// 	httpResp, err = c.Get(u)
-// 	if err != nil {
-// 		return resp, err
-// 	}
-// }
