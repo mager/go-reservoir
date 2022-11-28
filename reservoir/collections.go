@@ -16,6 +16,7 @@ func (c *ReservoirClient) GetCollections(slug string) (data.CollectionsResp, err
 
 	// Generate a URL
 	u, err := url.Parse(fmt.Sprintf("%s/collections/v5/", c.baseURL))
+	// TODO: Test
 	if err != nil {
 		return resp, err
 	}
@@ -27,6 +28,7 @@ func (c *ReservoirClient) GetCollections(slug string) (data.CollectionsResp, err
 
 	// Make the request
 	httpResp, err := c.Get(u)
+	// TODO: Test
 	if err != nil {
 		c.Log.Errorf("Error getting collections: %s", err)
 		return resp, err
@@ -34,6 +36,7 @@ func (c *ReservoirClient) GetCollections(slug string) (data.CollectionsResp, err
 
 	defer httpResp.Body.Close()
 	err = json.NewDecoder(httpResp.Body).Decode(&resp)
+	// TODO: Test
 	if err != nil {
 		c.Log.Errorf("Error decoding collections: %s", err)
 		return resp, err

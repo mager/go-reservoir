@@ -5,29 +5,10 @@ import (
 	"net/url"
 	"reflect"
 	"testing"
-	"time"
-
-	"go.uber.org/zap"
 )
 
-func generateReservoirClient() *ReservoirClient {
-	logger, _ := zap.NewProduction()
-
-	return &ReservoirClient{
-		Log: logger.Sugar(),
-
-		apiKey:  "test",
-		baseURL: "https://api.reservoir.tools",
-		client: &http.Client{
-			Timeout: time.Second * 10,
-		},
-		requestDelay: time.Millisecond * 250,
-	}
-
-}
-
 func TestNewReservoirClient(t *testing.T) {
-	c := generateReservoirClient()
+	c := GenerateReservoirClient()
 	type args struct {
 		apiKey string
 	}
@@ -68,7 +49,7 @@ func TestNewReservoirClient(t *testing.T) {
 }
 
 func TestGetRequest(t *testing.T) {
-	c := generateReservoirClient()
+	c := GenerateReservoirClient()
 
 	type args struct {
 		u *url.URL
@@ -136,7 +117,7 @@ func TestGetRequest(t *testing.T) {
 // TODO: TestGet()
 
 func TestGet(t *testing.T) {
-	c := generateReservoirClient()
+	c := GenerateReservoirClient()
 
 	type args struct {
 		u *url.URL
