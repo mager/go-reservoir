@@ -14,11 +14,12 @@ func (c *ReservoirClient) GetCollections(slug string) (data.CollectionsResp, err
 	var resp data.CollectionsResp
 	var err error
 
-	// Build the URL
-	// u := fmt.Sprintf("%s/collections/v5/?slug=%s", c.baseURL, slug)
-
 	// Generate a URL
 	u, err := url.Parse(fmt.Sprintf("%s/collections/v5/", c.baseURL))
+	if err != nil {
+		return resp, err
+	}
+
 	q := u.Query()
 	q.Add("slug", slug)
 

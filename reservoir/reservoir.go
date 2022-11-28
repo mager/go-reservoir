@@ -39,6 +39,7 @@ func (c *ReservoirClient) GetRequest(u *url.URL) (*http.Request, error) {
 	var err error
 
 	req, err := http.NewRequest("GET", u.String(), nil)
+	// TODO: Test
 	if err != nil {
 		return nil, err
 	}
@@ -52,6 +53,7 @@ func (c *ReservoirClient) GetRequest(u *url.URL) (*http.Request, error) {
 // Get does a GET request.
 func (c *ReservoirClient) Get(u *url.URL) (*http.Response, error) {
 	req, err := c.GetRequest(u)
+	// TODO: Test
 	if err != nil {
 		return nil, err
 	}

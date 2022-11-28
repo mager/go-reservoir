@@ -5,8 +5,8 @@ import (
 )
 
 type CollectionsResp struct {
-	Collections  []Collections `json:"collections"`
-	Continuation string        `json:"continuation"`
+	Collections  []Collection `json:"collections"`
+	Continuation string       `json:"continuation"`
 }
 type LastBuy struct {
 	Value interface{} `json:"value"`
@@ -73,7 +73,7 @@ type Royalties struct {
 	Bps       int    `json:"bps"`
 	Recipient string `json:"recipient"`
 }
-type Collections struct {
+type Collection struct {
 	ID                        string          `json:"id"`
 	Slug                      string          `json:"slug"`
 	CreatedAt                 time.Time       `json:"createdAt"`
