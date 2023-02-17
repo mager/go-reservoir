@@ -14,13 +14,7 @@ func (c *ReservoirClient) GetCollections(slug string) (data.CollectionsResp, err
 	var resp data.CollectionsResp
 	var err error
 
-	// Generate a URL
-	u, err := url.Parse(fmt.Sprintf("%s/collections/v5/", c.baseURL))
-	// TODO: Test
-	if err != nil {
-		return resp, err
-	}
-
+	u, _ := url.Parse(fmt.Sprintf("%s/collections/v5/", c.baseURL))
 	q := u.Query()
 	q.Add("slug", slug)
 
@@ -28,6 +22,7 @@ func (c *ReservoirClient) GetCollections(slug string) (data.CollectionsResp, err
 
 	// Make the request
 	httpResp, err := c.Get(u)
+
 	// TODO: Test
 	if err != nil {
 		c.Log.Errorf("Error getting collections: %s", err)

@@ -1,35 +1,44 @@
 package reservoir
 
-import "testing"
+import (
+	"io/ioutil"
+	"net/http"
+	"strings"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
+
+type mockTransport struct {
+	statusCode int
+	body       string
+}
+
+func (t *mockTransport) RoundTrip(req *http.Request) (*http.Response, error) {
+	return &http.Response{
+		StatusCode: t.statusCode,
+		Body:       ioutil.NopCloser(strings.NewReader(t.body)),
+	}, nil
+}
 
 func TestGetCollections(t *testing.T) {
-	type args struct {
-		slug string
-	}
-	tests := []struct {
-		name string
-		args args
-		want string
-	}{
-		{
-			name: "happy path",
-			args: args{
-				slug: "azuki",
-			},
-			want: "azuki",
+	// Create a mock HTTP client and a mock response
+	mockClient := &http.Client{
+		Transport: &mockTransport{
+			statusCode: 200,
+			body:       `{"collections":[{"name":"Collection 1"},{"name":"Collection 2"}]}`,
 		},
 	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			c := GenerateReservoirClient()
-			got, err := c.GetCollections(tt.args.slug)
-			if err != nil {
-				t.Errorf("GetCollections() error = %v", err)
-				return
-			}
-			if got.Collections[0].Slug != tt.want {
-				t.Errorf("GetCollections() = %v, want %v", got.Collections[0].Slug, tt.want)
-			}
-		})
-	}
+	// Create a new ReservoirClient instance with the mock HTTP client
+	client := NewReservoirClient("api-key")
+	client.client = mockClient
+
+	// Call the GetCollections method
+	resp, err := client.GetCollections("slug")
+
+	// Assert that the response is as expected
+	assert.Nil(t, err)
+	assert.Equal(t, 2, len(resp.Collections))
+	assert.Equal(t, "Collection 1", resp.Collections[0].Name)
+	assert.Equal(t, "Collection 2", resp.Collections[1].Name)
 }

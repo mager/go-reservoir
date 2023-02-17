@@ -55,10 +55,9 @@ func TestGetRequest(t *testing.T) {
 		u *url.URL
 	}
 	tests := []struct {
-		name    string
-		args    args
-		want    *http.Request
-		wantErr bool
+		name string
+		args args
+		want *http.Request
 	}{
 		{
 			name: "happy path",
@@ -87,17 +86,11 @@ func TestGetRequest(t *testing.T) {
 					"Content-Type": []string{"application/json"},
 				},
 			},
-			wantErr: false,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := c.GetRequest(tt.args.u)
-
-			if (err != nil) != tt.wantErr {
-				t.Errorf("GetRequest() error = %v, wantErr %v", err, tt.wantErr)
-				return
-			}
+			got := c.GetRequest(tt.args.u)
 
 			if !reflect.DeepEqual(got.Method, tt.want.Method) {
 				t.Errorf("GetRequest() = %v, want %v", got.Method, tt.want.Method)

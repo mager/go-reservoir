@@ -35,28 +35,17 @@ func NewReservoirClient(apiKey string) *ReservoirClient {
 }
 
 // NewRequest creates a new request and adds authentication headers.
-func (c *ReservoirClient) GetRequest(u *url.URL) (*http.Request, error) {
-	var err error
-
-	req, err := http.NewRequest("GET", u.String(), nil)
-	// TODO: Test
-	if err != nil {
-		return nil, err
-	}
+func (c *ReservoirClient) GetRequest(u *url.URL) *http.Request {
+	req, _ := http.NewRequest("GET", u.String(), nil)
 
 	req.Header.Set("X-API-KEY", c.apiKey)
 	req.Header.Set("Content-Type", "application/json")
 
-	return req, nil
+	return req
 }
 
 // Get does a GET request.
 func (c *ReservoirClient) Get(u *url.URL) (*http.Response, error) {
-	req, err := c.GetRequest(u)
-	// TODO: Test
-	if err != nil {
-		return nil, err
-	}
-
+	req := c.GetRequest(u)
 	return c.client.Do(req)
 }
