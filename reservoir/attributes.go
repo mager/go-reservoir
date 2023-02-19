@@ -1,4 +1,4 @@
-package entity
+package reservoir
 
 type Attribute struct {
 	Key            string    `json:"key"`
