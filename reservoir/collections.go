@@ -37,10 +37,5 @@ func (c *ReservoirClient) GetCollections(slug string) (data.CollectionsResp, err
 		return resp, err
 	}
 
-	// Loop through collections
-	for _, collection := range resp.Collections {
-		c.Log.Infow("DEBUG", "collection", collection)
-	}
-
 	return resp, err
 }
