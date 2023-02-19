@@ -8,113 +8,118 @@ import (
 )
 
 type CollectionsResp struct {
-	Collections  []Collection `json:"collections"`
-	Continuation string       `json:"continuation"`
+	Collections []Collection `json:"collections"`
 }
 
-type LastBuy struct {
+type Breakdown struct {
+	Bps       int    `json:"bps"`
+	Recipient string `json:"recipient"`
+}
+type Royalties struct {
+	Recipient string      `json:"recipient"`
+	Breakdown []Breakdown `json:"breakdown"`
+	Bps       int         `json:"bps"`
+}
+type Custom struct {
+	Bps       int    `json:"bps"`
+	Recipient string `json:"recipient"`
+}
+type Opensea struct {
+	Bps       int    `json:"bps"`
+	Recipient string `json:"recipient"`
+}
+type Allroyalties struct {
+	Custom  []Custom  `json:"custom"`
+	Opensea []Opensea `json:"opensea"`
+}
+type Lastbuy struct {
 	Value interface{} `json:"value"`
 }
-
 type Currency struct {
 	Contract string `json:"contract"`
 	Name     string `json:"name"`
 	Symbol   string `json:"symbol"`
 	Decimals int    `json:"decimals"`
 }
-
 type Amount struct {
 	Raw     string  `json:"raw"`
 	Decimal float64 `json:"decimal"`
 	Usd     float64 `json:"usd"`
 	Native  float64 `json:"native"`
 }
-
 type Price struct {
 	Currency Currency `json:"currency"`
 	Amount   Amount   `json:"amount"`
 }
-
 type Token struct {
 	Contract string `json:"contract"`
-	TokenID  string `json:"tokenId"`
+	Tokenid  string `json:"tokenId"`
 	Name     string `json:"name"`
 	Image    string `json:"image"`
 }
-
-type FloorAsk struct {
+type Floorask struct {
 	ID           string `json:"id"`
-	SourceDomain string `json:"sourceDomain"`
+	Sourcedomain string `json:"sourceDomain"`
 	Price        Price  `json:"price"`
 	Maker        string `json:"maker"`
-	ValidFrom    int    `json:"validFrom"`
-	ValidUntil   int    `json:"validUntil"`
+	Validfrom    int    `json:"validFrom"`
+	Validuntil   int    `json:"validUntil"`
 	Token        Token  `json:"token"`
 }
-
 type Rank struct {
-	OneDay    int `json:"1day"`
-	SevenDay  int `json:"7day"`
-	Three0Day int `json:"30day"`
-	AllTime   int `json:"allTime"`
+	OneDay    interface{} `json:"1day"`
+	SevenDay  int         `json:"7day"`
+	Three0Day int         `json:"30day"`
+	Alltime   int         `json:"allTime"`
 }
-
 type Volume struct {
-	OneDay    float64 `json:"1day"`
+	OneDay    int     `json:"1day"`
 	SevenDay  float64 `json:"7day"`
 	Three0Day float64 `json:"30day"`
-	AllTime   float64 `json:"allTime"`
+	Alltime   float64 `json:"allTime"`
 }
-
-type VolumeChange struct {
-	OneDay    float64 `json:"1day"`
-	SevenDay  float64 `json:"7day"`
-	Three0Day float64 `json:"30day"`
-}
-
-type FloorSale struct {
-	OneDay    float64 `json:"1day"`
+type Volumechange struct {
+	OneDay    int     `json:"1day"`
 	SevenDay  float64 `json:"7day"`
 	Three0Day float64 `json:"30day"`
 }
-
-type FloorSaleChange struct {
+type Floorsale struct {
 	OneDay    float64 `json:"1day"`
 	SevenDay  float64 `json:"7day"`
 	Three0Day float64 `json:"30day"`
 }
-
-type Royalties struct {
-	Bps       int    `json:"bps"`
-	Recipient string `json:"recipient"`
+type Floorsalechange struct {
+	OneDay    float64 `json:"1day"`
+	SevenDay  float64 `json:"7day"`
+	Three0Day float64 `json:"30day"`
 }
-
 type Collection struct {
 	ID                        string          `json:"id"`
 	Slug                      string          `json:"slug"`
-	CreatedAt                 time.Time       `json:"createdAt"`
+	Createdat                 time.Time       `json:"createdAt"`
 	Name                      string          `json:"name"`
 	Image                     string          `json:"image"`
 	Banner                    string          `json:"banner"`
-	DiscordURL                string          `json:"discordUrl"`
-	ExternalURL               string          `json:"externalUrl"`
-	TwitterUsername           string          `json:"twitterUsername"`
-	OpenseaVerificationStatus string          `json:"openseaVerificationStatus"`
+	Discordurl                string          `json:"discordUrl"`
+	Externalurl               string          `json:"externalUrl"`
+	Twitterusername           string          `json:"twitterUsername"`
+	Openseaverificationstatus string          `json:"openseaVerificationStatus"`
 	Description               string          `json:"description"`
-	SampleImages              []string        `json:"sampleImages"`
-	TokenCount                string          `json:"tokenCount"`
-	OnSaleCount               string          `json:"onSaleCount"`
-	PrimaryContract           string          `json:"primaryContract"`
-	TokenSetID                string          `json:"tokenSetId"`
-	LastBuy                   LastBuy         `json:"lastBuy"`
-	FloorAsk                  FloorAsk        `json:"floorAsk"`
+	Sampleimages              []string        `json:"sampleImages"`
+	Tokencount                string          `json:"tokenCount"`
+	Onsalecount               string          `json:"onSaleCount"`
+	Primarycontract           string          `json:"primaryContract"`
+	Tokensetid                string          `json:"tokenSetId"`
+	Royalties                 Royalties       `json:"royalties"`
+	Allroyalties              Allroyalties    `json:"allRoyalties"`
+	Lastbuy                   Lastbuy         `json:"lastBuy"`
+	Floorask                  Floorask        `json:"floorAsk"`
 	Rank                      Rank            `json:"rank"`
 	Volume                    Volume          `json:"volume"`
-	VolumeChange              VolumeChange    `json:"volumeChange"`
-	FloorSale                 FloorSale       `json:"floorSale"`
-	FloorSaleChange           FloorSaleChange `json:"floorSaleChange"`
-	CollectionBidSupported    bool            `json:"collectionBidSupported"`
-	Royalties                 Royalties       `json:"royalties,omitempty"`
+	Volumechange              Volumechange    `json:"volumeChange"`
+	Floorsale                 Floorsale       `json:"floorSale"`
+	Floorsalechange           Floorsalechange `json:"floorSaleChange"`
+	Collectionbidsupported    bool            `json:"collectionBidSupported"`
 }
 
 // GetCollections gets a list of collections by slug
@@ -123,7 +128,7 @@ func (c *ReservoirClient) GetCollections(slug string) (CollectionsResp, error) {
 	var resp CollectionsResp
 	var err error
 
-	u, _ := url.Parse(fmt.Sprintf("%s/collections/v5/", c.baseURL))
+	u, _ := url.Parse(fmt.Sprintf("%s/collections/v5", c.baseURL))
 	q := u.Query()
 	q.Add("slug", slug)
 
@@ -146,5 +151,6 @@ func (c *ReservoirClient) GetCollections(slug string) (CollectionsResp, error) {
 		return resp, err
 	}
 
+	// Log response body
 	return resp, err
 }

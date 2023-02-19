@@ -9,7 +9,7 @@ func main() {
 	client := reservoir.NewReservoirClient("") // Your API key goes here
 
 	// Get Collections
-	slug := "azuki"
+	slug := "hot-dougs"
 	c, err := client.GetCollections(slug)
 	if err != nil {
 		// TODO: Handle error
@@ -17,6 +17,6 @@ func main() {
 
 	// Loop through collections and print the name
 	for _, collection := range c.Collections {
-		client.Log.Info(collection)
+		client.Log.Infow("Fetched collection", "name", collection.Name)
 	}
 }
