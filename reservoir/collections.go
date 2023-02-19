@@ -5,13 +5,13 @@ import (
 	"fmt"
 	"net/url"
 
-	"github.com/mager/go-reservoir/data"
+	"github.com/mager/go-reservoir/entity"
 )
 
 // GetCollections gets a list of collections by slug
 // https://docs.reservoir.tools/reference/getcollectionsv5
-func (c *ReservoirClient) GetCollections(slug string) (data.CollectionsResp, error) {
-	var resp data.CollectionsResp
+func (c *ReservoirClient) GetCollections(slug string) (entity.CollectionsResp, error) {
+	var resp entity.CollectionsResp
 	var err error
 
 	u, _ := url.Parse(fmt.Sprintf("%s/collections/v5/", c.baseURL))

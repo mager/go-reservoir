@@ -107,8 +107,6 @@ func TestGetRequest(t *testing.T) {
 	}
 }
 
-// TODO: TestGet()
-
 func TestGet(t *testing.T) {
 	c := GenerateReservoirClient()
 
@@ -171,35 +169,6 @@ func TestGet(t *testing.T) {
 			if !reflect.DeepEqual(got.Request.Header, tt.want.Header) {
 				t.Errorf("Get() = %v, want %v", got.Request.Header, tt.want.Header)
 			}
-
-			// TODO: Fix test
-			// if !reflect.DeepEqual(got.StatusCode, 200) {
-			// 	t.Errorf("Get() = %v, want %v", got.StatusCode, 200)
-			// }
-
-			// // Test response body
-			// body, err := ioutil.ReadAll(got.Body)
-			// if err != nil {
-			// 	t.Error(err)
-			// }
-
-			// var collections []data.Collection
-			// err = json.Unmarshal(body, &collections)
-			// if err != nil {
-			// 	t.Error(err)
-			// }
-
-			// if !reflect.DeepEqual(len(collections), 1) {
-			// 	t.Errorf("GetRequest() = %v, want %v", len(collections), 1)
-			// }
-
-			// if !reflect.DeepEqual(collections[0].Slug, "azuki") {
-			// 	t.Errorf("GetRequest() = %v, want %v", collections[0].Slug, "azuki")
-			// }
-
-			// if !reflect.DeepEqual(collections[0].Name, "Azuki") {
-			// 	t.Errorf("GetRequest() = %v, want %v", collections[0].Name, "Azuki")
-			// }
 		})
 	}
 }
