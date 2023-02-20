@@ -34,7 +34,11 @@ func TestGetCollections(t *testing.T) {
 	client.client = mockClient
 
 	// Call the GetCollections method
-	resp, err := client.GetCollections("slug")
+	opts := GetCollectionsOptions{
+		Slug:              "slug",
+		IncludeOwnerCount: true,
+	}
+	resp, err := client.GetCollections(opts)
 
 	// Assert that the response is as expected
 	assert.Nil(t, err)
