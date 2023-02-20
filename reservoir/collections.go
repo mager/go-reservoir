@@ -122,15 +122,23 @@ type Collection struct {
 	CollectionBidSupported    bool            `json:"collectionBidSupported"`
 }
 
+type GetCollectionsOptions struct {
+	IncludeOwnerCount bool
+}
+
 // GetCollections gets a list of collections by slug
 // https://docs.reservoir.tools/reference/getcollectionsv5
-func (c *ReservoirClient) GetCollections(slug string) (CollectionsResp, error) {
+func (c *ReservoirClient) GetCollections(slug string, opts GetCollectionsOptions) (CollectionsResp, error) {
 	var resp CollectionsResp
 	var err error
 
 	u, _ := url.Parse(fmt.Sprintf("%s/collections/v5", c.baseURL))
 	q := u.Query()
 	q.Add("slug", slug)
+
+	if opts.IncludeOwnerCount {
+		q.Add("includeOwnerCount", "true")
+	}
 
 	u.RawQuery = q.Encode()
 

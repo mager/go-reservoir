@@ -10,7 +10,10 @@ func main() {
 
 	// Get Collections
 	slug := "hot-dougs"
-	c, err := client.GetCollections(slug)
+	opts := reservoir.GetCollectionsOptions{
+		IncludeOwnerCount: true,
+	}
+	c, err := client.GetCollections(slug, opts)
 	if err != nil {
 		// TODO: Handle error
 	}
