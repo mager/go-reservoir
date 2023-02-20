@@ -120,6 +120,7 @@ type Collection struct {
 	FloorSale                 FloorSale       `json:"floorSale"`
 	FloorSaleChange           FloorSaleChange `json:"floorSaleChange"`
 	CollectionBidSupported    bool            `json:"collectionBidSupported"`
+	OwnerCount                int             `json:"ownerCount"`
 }
 
 type GetCollectionsOptions struct {
