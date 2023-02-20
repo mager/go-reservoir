@@ -12,27 +12,27 @@ type CollectionsResp struct {
 }
 
 type Breakdown struct {
-	Bps       int    `json:"bps"`
+	BPS       int    `json:"bps"`
 	Recipient string `json:"recipient"`
 }
 type Royalties struct {
 	Recipient string      `json:"recipient"`
 	Breakdown []Breakdown `json:"breakdown"`
-	Bps       int         `json:"bps"`
+	BPS       int         `json:"bps"`
 }
 type Custom struct {
-	Bps       int    `json:"bps"`
+	BPS       int    `json:"bps"`
 	Recipient string `json:"recipient"`
 }
 type Opensea struct {
-	Bps       int    `json:"bps"`
+	BPS       int    `json:"bps"`
 	Recipient string `json:"recipient"`
 }
-type Allroyalties struct {
+type AllRoyalties struct {
 	Custom  []Custom  `json:"custom"`
 	Opensea []Opensea `json:"opensea"`
 }
-type Lastbuy struct {
+type LastBuy struct {
 	Value interface{} `json:"value"`
 }
 type Currency struct {
@@ -44,7 +44,7 @@ type Currency struct {
 type Amount struct {
 	Raw     string  `json:"raw"`
 	Decimal float64 `json:"decimal"`
-	Usd     float64 `json:"usd"`
+	USD     float64 `json:"usd"`
 	Native  float64 `json:"native"`
 }
 type Price struct {
@@ -53,42 +53,42 @@ type Price struct {
 }
 type Token struct {
 	Contract string `json:"contract"`
-	Tokenid  string `json:"tokenId"`
+	TokenID  string `json:"tokenId"`
 	Name     string `json:"name"`
 	Image    string `json:"image"`
 }
-type Floorask struct {
+type FloorAsk struct {
 	ID           string `json:"id"`
-	Sourcedomain string `json:"sourceDomain"`
+	SourceDomain string `json:"sourceDomain"`
 	Price        Price  `json:"price"`
 	Maker        string `json:"maker"`
-	Validfrom    int    `json:"validFrom"`
-	Validuntil   int    `json:"validUntil"`
+	ValidFrom    int    `json:"validFrom"`
+	ValidUntil   int    `json:"validUntil"`
 	Token        Token  `json:"token"`
 }
 type Rank struct {
 	OneDay    interface{} `json:"1day"`
 	SevenDay  int         `json:"7day"`
 	Three0Day int         `json:"30day"`
-	Alltime   int         `json:"allTime"`
+	AllTime   int         `json:"allTime"`
 }
 type Volume struct {
-	OneDay    int     `json:"1day"`
+	OneDay    float64 `json:"1day"`
 	SevenDay  float64 `json:"7day"`
 	Three0Day float64 `json:"30day"`
-	Alltime   float64 `json:"allTime"`
+	AllTime   float64 `json:"allTime"`
 }
-type Volumechange struct {
-	OneDay    int     `json:"1day"`
-	SevenDay  float64 `json:"7day"`
-	Three0Day float64 `json:"30day"`
-}
-type Floorsale struct {
+type VolumeChange struct {
 	OneDay    float64 `json:"1day"`
 	SevenDay  float64 `json:"7day"`
 	Three0Day float64 `json:"30day"`
 }
-type Floorsalechange struct {
+type FloorSale struct {
+	OneDay    float64 `json:"1day"`
+	SevenDay  float64 `json:"7day"`
+	Three0Day float64 `json:"30day"`
+}
+type FloorSaleChange struct {
 	OneDay    float64 `json:"1day"`
 	SevenDay  float64 `json:"7day"`
 	Three0Day float64 `json:"30day"`
@@ -96,30 +96,30 @@ type Floorsalechange struct {
 type Collection struct {
 	ID                        string          `json:"id"`
 	Slug                      string          `json:"slug"`
-	Createdat                 time.Time       `json:"createdAt"`
+	CreatedAt                 time.Time       `json:"createdAt"`
 	Name                      string          `json:"name"`
 	Image                     string          `json:"image"`
 	Banner                    string          `json:"banner"`
-	Discordurl                string          `json:"discordUrl"`
-	Externalurl               string          `json:"externalUrl"`
-	Twitterusername           string          `json:"twitterUsername"`
-	Openseaverificationstatus string          `json:"openseaVerificationStatus"`
+	DiscordURL                string          `json:"discordUrl"`
+	externalURL               string          `json:"externalUrl"`
+	TwitterUsername           string          `json:"twitterUsername"`
+	OpenseaVerificationstatus string          `json:"openseaVerificationStatus"`
 	Description               string          `json:"description"`
-	Sampleimages              []string        `json:"sampleImages"`
-	Tokencount                string          `json:"tokenCount"`
-	Onsalecount               string          `json:"onSaleCount"`
-	Primarycontract           string          `json:"primaryContract"`
-	Tokensetid                string          `json:"tokenSetId"`
+	SampleImages              []string        `json:"sampleImages"`
+	TokenCount                string          `json:"tokenCount"`
+	OnSaleCount               string          `json:"onSaleCount"`
+	PrimaryContract           string          `json:"primaryContract"`
+	TokensetUD                string          `json:"tokenSetId"`
 	Royalties                 Royalties       `json:"royalties"`
-	Allroyalties              Allroyalties    `json:"allRoyalties"`
-	Lastbuy                   Lastbuy         `json:"lastBuy"`
-	Floorask                  Floorask        `json:"floorAsk"`
+	AllRoyalties              AllRoyalties    `json:"allRoyalties"`
+	LastBuy                   LastBuy         `json:"lastBuy"`
+	FloorAsk                  FloorAsk        `json:"floorAsk"`
 	Rank                      Rank            `json:"rank"`
 	Volume                    Volume          `json:"volume"`
-	Volumechange              Volumechange    `json:"volumeChange"`
-	Floorsale                 Floorsale       `json:"floorSale"`
-	Floorsalechange           Floorsalechange `json:"floorSaleChange"`
-	Collectionbidsupported    bool            `json:"collectionBidSupported"`
+	VolumeChange              VolumeChange    `json:"volumeChange"`
+	FloorSale                 FloorSale       `json:"floorSale"`
+	FloorSaleChange           FloorSaleChange `json:"floorSaleChange"`
+	CollectionBidSupported    bool            `json:"collectionBidSupported"`
 }
 
 // GetCollections gets a list of collections by slug
